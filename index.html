@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ceci Cumpleaños feliz</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.16/mediaelementplayer.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.16/mediaelement-and-player.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
     <style>
         body {
             background-color: #2b3842;
@@ -30,7 +36,7 @@
 
         .flower {
             position: fixed;
-            height: 55vw;
+            height: 75vw;
         }
 
         .bottom-left {
@@ -45,22 +51,73 @@
             right: 0;
             z-index: 100000;
         }
+
+        .carrusel {
+            top: 44vw;
+            width: 77vw;
+            position: fixed;
+            margin: auto;
+            display: none;
+        }
+
+        .carrousel-image {
+            width: 100%;
+            display: none;
+        }
+
+        #playButton {
+            top: -117vw;
+            margin: auto;
+            position: relative;
+            background-color: #2b3842;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        #miAudio {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <img class="flower bottom-left" src="flor.png" alt="Flor Image">
+        <audio id="miAudio" controls>
+            <source src="ABBA - Dancing Queen (Official Lyric Video).mp3" type="audio/mp3">
+        </audio>
         <img id="background-image" src="happy-birthday.jpg" alt="Happy Birthday Image.">
+
+        <button id="playButton" onclick="playAudio()">
+            <i id="playIcon" class="fas fa-play"></i>
+        </button>
+
+
+        <div id="caruselsito" class="carrusel">
+            <img class="carrousel-image" src="imagen1.jpg" alt="Imagen 1">
+            <img class="carrousel-image" src="imagen2.jpg" alt="Imagen 2">
+            <img class="carrousel-image" src="imagen1.jpg" alt="Imagen 3">
+            <img class="carrousel-image" src="imagen2.jpg" alt="Imagen 4">
+            <img class="carrousel-image" src="imagen1.jpg" alt="Imagen 5">
+        </div>
         <img class="flower top-right" src="flor.png" alt="Flor Image">
     </div>
 </body>
 
 
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
+        var player = new MediaElementPlayer('audioPlayer');
+
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
         let currentImage = 0;
+        let count = 0;
         const images = document.querySelectorAll('.carrusel img');
 
         function showImage(index) {
@@ -72,10 +129,24 @@
         function nextImage() {
             currentImage = (currentImage + 1) % images.length;
             showImage(currentImage);
+            count++;
+            console.log(count);
+            if (count == 5) {
+                let carrusel = document.getElementById("caruselsito");
+                carrusel.style.display = "none";
+                console.log("!!");
+            }
         }
 
         setInterval(nextImage, 3000); // Cambia la imagen cada 3 segundos (3000 milisegundos)
     });
+
+    function playAudio() {
+        var audio = document.getElementById('miAudio');
+        audio.play();
+        let carrusel = document.getElementById("caruselsito");
+        carrusel.style.display = "block";
+    }
 </script>
 
 </html>
