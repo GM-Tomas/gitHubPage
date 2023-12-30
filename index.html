@@ -2,14 +2,13 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ceci Cumpleaños feliz</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.16/mediaelementplayer.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.16/mediaelement-and-player.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
     <style>
         body {
@@ -55,7 +54,6 @@
             margin: auto;
         }
 
-
         .carrusel-casi {
             width: 100%;
             height: 100%;
@@ -64,7 +62,6 @@
             position: fixed;
             margin: auto;
         }
-
 
         .apagado-init {
             display: none;
@@ -96,7 +93,7 @@
             z-index: 1;
             margin: auto;
             position: relative;
-            background-color: #2b3842;
+            background-color: pink;
             color: #fff;
             padding: 10px;
             border: none;
@@ -118,59 +115,56 @@
 
 <body>
     <div class="container">
-        <img class="flower bottom-left" src="flor.png" alt="Flor Image">
+        <img class="flower bottom-left" src="flor.png" alt="Flor Image" />
         <audio id="miAudio" controls>
-            <source src="ABBA - Dancing Queen (Official Lyric Video).mp3" type="audio/mp3">
+            <source src="ABBA - Dancing Queen (Official Lyric Video).mp3" type="audio/mp3" />
         </audio>
 
         <button id="playButton" onclick="playAudio()">
             <i id="playIcon" class="fas fa-play"></i>
         </button>
 
-        <button id="giftButton" onclick="playAudio()">
-            <i id="playIcon" class="fas fa-play"></i>
+        <button id="giftButton" class="apagado-init" onclick="openGift()">
+            Clickea aqui para abrir el regalito
+            <i class="fas fa-gift"></i>
         </button>
 
         <div id="caruselsito" class="carrusel apagado-init">
-            <img class="carrousel-image" src="imagen1.jpg" alt="Imagen 1">
-            <img class="carrousel-image" src="imagen2.jpg" alt="Imagen 2">
-            <img class="carrousel-image" src="imagen3.jpg" alt="Imagen 3">
-            <img class="carrousel-image" src="imagen4.jpg" alt="Imagen 4">
-            <img class="carrousel-image" src="imagen5.jpg" alt="Imagen 5">
-            <img class="carrousel-image" src="imagen6.jpg" alt="Imagen 6">
-            <img class="carrousel-image" src="imagen7.jpg" alt="Imagen 7">
-            <img class="carrousel-image" src="imagen8.jpg" alt="Imagen 8">
+            <img class="carrousel-image" src="imagen1.jpg" alt="Imagen 1" />
+            <img class="carrousel-image" src="imagen2.jpg" alt="Imagen 2" />
+            <img class="carrousel-image" src="imagen3.jpg" alt="Imagen 3" />
+            <img class="carrousel-image" src="imagen4.jpg" alt="Imagen 4" />
+            <img class="carrousel-image" src="imagen5.jpg" alt="Imagen 5" />
+            <img class="carrousel-image" src="imagen6.jpg" alt="Imagen 6" />
+            <img class="carrousel-image" src="imagen7.jpg" alt="Imagen 7" />
+            <img class="carrousel-image" src="imagen8.jpg" alt="Imagen 8" />
         </div>
 
         <div id="regalo" class="carrusel-casi apagado-init">
-            <img class="carrousel-image-casi" src="imagen9.jpg" alt="Imagen 9">
+            <img class="carrousel-image-casi" src="imagen9.jpg" alt="Imagen 9" />
         </div>
-
 
         <div id="background" class="carrusel-casi">
-            <img class="carrousel-image-casi" src="imagen0.jpg" alt="Imagen 9">
+            <img class="carrousel-image-casi" src="imagen0.jpg" alt="Imagen 9" />
         </div>
 
-
-        <img class="flower top-right" src="flor.png" alt="Flor Image">
+        <img class="flower top-right" src="flor.png" alt="Flor Image" />
     </div>
 </body>
 
-
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var player = new MediaElementPlayer('audioPlayer');
-
+    document.addEventListener("DOMContentLoaded", function () {
+        var player = new MediaElementPlayer("audioPlayer");
     });
 
     let count = -1;
     let interval = 4000;
     let currentImage = 0;
-    const images = document.querySelectorAll('.carrusel img');
+    const images = document.querySelectorAll(".carrusel img");
 
     function showImage(index) {
         images.forEach((image, i) => {
-            image.style.display = i === index ? 'block' : 'none';
+            image.style.display = i === index ? "block" : "none";
         });
     }
 
@@ -182,12 +176,14 @@
             let carrusel = document.getElementById("caruselsito");
             carrusel.style.display = "none";
             console.log("!!");
+            let gift = document.getElementById("giftButton");
+            gift.style.display = "block";
         }
     }
 
     function playAudio() {
         count = 0;
-        var audio = document.getElementById('miAudio');
+        var audio = document.getElementById("miAudio");
         audio.play();
         let carrusel = document.getElementById("caruselsito");
         let playButton = document.getElementById("playButton");
@@ -195,6 +191,16 @@
         carrusel.style.display = "block";
         nextImage();
         setInterval(nextImage, interval); // Cambia la imagen cada 3 segundos (3000 milisegundos)
+    }
+
+    function openGift() {
+        console.log("Gift open");
+        let gift = document.getElementById("giftButton");
+        gift.style.display = "none";
+        let background = document.getElementById("background");
+        let regalo = document.getElementById("regalo");
+        background.style.display = "none";
+        regalo.style.display = "block";
     }
 </script>
 
